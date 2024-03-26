@@ -32,7 +32,8 @@ namespace CodeChallenge.Services
         public Compensation Create(Compensation compensation)
         {
             if (compensation == null) return null;
-            var employee = _employeeService.GetById(compensation.EmployeeId);
+            var employeeID = compensation.Employee != null ? compensation.Employee.EmployeeId : compensation.EmployeeId;
+            var employee = _employeeService.GetById(employeeID);
             if (employee == null)
             {
                 throw new Exception($"Employee {compensation.EmployeeId} Not Found");
